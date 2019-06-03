@@ -24,4 +24,7 @@ const thursdayColumn = [5, 12, 19, 26, 33, 40];
 const fridayColumn = [6, 13, 20, 27, 34, 41];
 const saturdayColumn = [7, 14, 21, 28, 35, 42];
 
-let firstDateOfJanuary = new Date('1/1/')
+let firstDayOfTheYear = daysOfWeek[new Date('1/1/' + process.argv[2]).getDay()];
+
+
+console.log(firstDayOfTheYear);
