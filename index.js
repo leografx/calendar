@@ -1,12 +1,3 @@
-// const dateCalGridRows = [
-//     [1, 2, 3, 4, 5, 6, 7],
-//     [8, 9, 10, 11, 12, 13, 14],
-//     [15, 16, 17, 18, 19, 20, 21],
-//     [22, 23, 24, 25, 26, 27, 28],
-//     [29, 30, 31, 32, 33, 34, 35],
-//     [36, 37, 38, 39, 40, 41, 42]
-// ];
-
 const dates = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
 const datesLead = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
 
@@ -16,32 +7,40 @@ const daysOfWeekShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const months = ['January', 'February', 'March', 'April', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-// const sundayColumn = [1, 8, 15, 22, 29, 36];
-// const mondayColumn = [2, 9, 16, 23, 30, 37];
-// const tuesdayColumn = [3, 10, 17, 24, 31, 38];
-// const wednesdayColumn = [4, 11, 18, 25, 32, 39];
-// const thursdayColumn = [5, 12, 19, 26, 33, 40];
-// const fridayColumn = [6, 13, 20, 27, 34, 41];
-// const saturdayColumn = [7, 14, 21, 28, 35, 42];
-
-
 let firstDayOfTheMonth = function (month, day, year) {
     return new Date(`${month}/${day}/${year}`).getDay();
 }
 
+function leapYear(year) {
+    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+}
 
-
-function setDatesPosition(startPosition, month) {
+function setDatesPosition(month, day, year) {
     let d = Object.assign(dates);
 
+    // leap year
+    if (month === 2) {
+        if (leapYear(year)) {
+            d.pop();
+            d.pop();
+        } else {
+            d.pop();
+            d.pop();
+            d.pop();
+        }
+    }
+
+    // 30 day months
     if (month === 4 || month === 6 || month === 9 || month === 11) {
         d.pop();
     }
 
-    for (let i = 0; i < startPosition; i++) {
+    // set front day blanks
+    for (let i = 0; i < day; i++) {
         d.unshift(' ');
     }
 
+    // set end day blanks
     let push = (42 - d.length);
     for (let i = 0; i < push; i++) {
         d.push(' ');
@@ -50,11 +49,9 @@ function setDatesPosition(startPosition, month) {
     return d;
 }
 
-
-
-function generateMonth(month, day, year) {
-    const dayOfFirstDate = firstDayOfTheMonth(month, day, year)
-    const d = setDatesPosition(dayOfFirstDate, month);
+function generateMonth(month, year) {
+    const dayOfFirstDate = firstDayOfTheMonth(month, 1, year)
+    const d = setDatesPosition(month, dayOfFirstDate, year);
 
     const row1 = [d[0], d[1], d[2], d[3], d[4], d[5], d[6]];
     const row2 = [d[7], d[8], d[9], d[10], d[11], d[12], d[13]];
@@ -74,4 +71,7 @@ function generateMonth(month, day, year) {
     return [row1, row2, row3, row4, row5, row6];
 }
 
-console.log(generateMonth(8, 1, 2019));
+const year = +process.argv[3];
+const month = +process.argv[2];
+
+console.log(generateMonth(month, year));
