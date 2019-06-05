@@ -1,3 +1,4 @@
-let cal = require('./cal.js');
+let cal = require('./calendar.js');
 
-console.log(cal.cal(2, 2019).generateMonth(2, 2019));
+// usage 
+console.log(cal.generateMonth(1, 2019));

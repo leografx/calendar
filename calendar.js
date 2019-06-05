@@ -1,5 +1,3 @@
-
-
 const dates = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
 const datesLead = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
 
@@ -51,7 +49,7 @@ function setDatesPosition(month, day, year) {
     return d;
 }
 
-function generateMonth(month, year) {
+var generateMonth = function (month, year) {
     const dayOfFirstDate = firstDayOfTheMonth(month, year)
     const d = setDatesPosition(month, dayOfFirstDate, year);
     const days = daysOfWeek;
@@ -75,6 +73,10 @@ function generateMonth(month, year) {
     return { year, month: m, days: days, row1, row2, row3, row4, row5, row6 };
 }
 
-console.log(generateMonth(2, 2019));
+
+module.exports.generateMonth = generateMonth;
+
+
+
 
 
