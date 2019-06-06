@@ -103,7 +103,15 @@
         return { year, month: m, days: days, row1, row2, row3, row4, row5, row6 };
     }
 
+    var dateIsValid = function (month, date, year) {
+        let dayOfFirstDate = firstDayOfTheMonth(month, year)
+        let dates = setDatesPosition(month, dayOfFirstDate, year);
+
+        return (dates.includes(String(date)));
+    }
+
     module.exports.generateMonth = generateMonth;
+    module.exports.dateIsValid = dateIsValid;
 
 })();
 

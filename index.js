@@ -1,5 +1,7 @@
 let cal = require('./calendar.js');
 
+// validate a date
+console.log(cal.dateIsValid(2, 29, 2019));
 
 // usage 
 console.log(cal.generateMonth(1, 2019));
