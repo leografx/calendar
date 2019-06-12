@@ -1,0 +1,27 @@
+{
+  "name": "calendar-grid",
+  "version": "0.1.0",
+  "description": "Calendar object to layout in columns and rows",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leografx/calendar.git"
+  },
+  "keywords": [
+    "calendar",
+    "time",
+    "dates",
+    "day",
+    "months",
+    "years."
+  ],
+  "author": "Leo Martinez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leografx/calendar/issues"
+  },
+  "homepage": "https://github.com/leografx/calendar#readme"
+}

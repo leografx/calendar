@@ -1,16 +1,13 @@
-let getDaysOfWeek = function(short = false) {
-    const getD = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    const getDshort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-
+let getDaysOfWeek = function (short = false) {
     if (short) {
-        return getDshort;
+        return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     }
 
-    return getD;
+    return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];;
 }
 
 
-let getMonth = function(m, short = false) {
+let getMonth = function (m, short = false) {
     const monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -21,7 +18,7 @@ let getMonth = function(m, short = false) {
 
 }
 
-let getDates = function(padding) {
+let getDates = function (padding) {
 
     if (padding) {
         return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
@@ -32,7 +29,7 @@ let getDates = function(padding) {
 }
 
 
-let firstDayOfTheMonth = function(month, year) {
+let firstDayOfTheMonth = function (month, year) {
     return new Date(`${month}/1/${year}`).getDay();
 }
 
@@ -75,7 +72,7 @@ function setDatesPosition(month, day, year) {
     return d;
 }
 
-const generateMonth = function(month, year, option = { dayOfWeekShort: false, monthShort: false }) {
+const generateMonth = function (month, year, option = { dayOfWeekShort: false, monthShort: false }) {
     let row1, row2, row3, row4, row5, row6;
     let d = [];
     let dayOfFirstDate = firstDayOfTheMonth(month, year)
@@ -101,7 +98,7 @@ const generateMonth = function(month, year, option = { dayOfWeekShort: false, mo
     return { year, month: m, days: days, row1, row2, row3, row4, row5, row6 };
 }
 
-const dateIsValid = function(month, date, year) {
+const dateIsValid = function (month, date, year) {
     let dayOfFirstDate = firstDayOfTheMonth(month, year)
     let dates = setDatesPosition(month, dayOfFirstDate, year);
 

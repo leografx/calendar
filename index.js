@@ -3,9 +3,9 @@ let cal = require('./calendar');
 
 // validate a date
 // console.log(cal.dateIsValid(2, 29, 2019));
-console.log(cal.generateMonth(1, 2020));
+console.log(cal.generateMonth(1, 2020, { monthShort: true, dayOfWeekShort: true }));
 console.log(cal.generateMonth(2, 2020));
-// usage 
+// usage
 // console.log(generateMonth(1, 2019));
 // console.log(generateMonth(2, 2019));
 // console.log(generateMonth(3, 2019));
