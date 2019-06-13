@@ -33,7 +33,7 @@ let firstDayOfTheMonth = function (month, year) {
     return new Date(`${month}/1/${year}`).getDay();
 }
 
-function isLeapYear(year) {
+let isLeapYear = function (year) {
     return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 }
 
@@ -105,5 +105,13 @@ const dateIsValid = function (month, date, year) {
     return (dates.includes(String(date)));
 }
 
+// console.log(generateMonth(2, 2019, { dayOfWeekShort: true, monthShort: true }))
+
 module.exports.dateIsValid = dateIsValid;
 module.exports.generateMonth = generateMonth;
+module.exports.setDatesPosition = setDatesPosition;
+module.exports.firstDayOfTheMonth = firstDayOfTheMonth;
+module.exports.getDaysOfWeek = getDaysOfWeek;
+module.exports.isLeapYear = isLeapYear;
+
+// console.log(generateMonth(12, 1971))

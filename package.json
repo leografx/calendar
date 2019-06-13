@@ -4,7 +4,7 @@
   "description": "Calendar object to layout in columns and rows",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,9 @@
   "bugs": {
     "url": "https://github.com/leografx/calendar/issues"
   },
-  "homepage": "https://github.com/leografx/calendar#readme"
+  "homepage": "https://github.com/leografx/calendar#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
 }

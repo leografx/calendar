@@ -1,4 +1,3 @@
-// import { generateMonth } from './calendar';
 let cal = require('./calendar');
 
 // validate a date
