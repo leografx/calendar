@@ -1,6 +1,7 @@
 const chai = require('chai');
 const cal = require('../calendar');
 
+
 describe('generate month', () => {
     it('should generate an object', () => {
         chai.expect(cal.generateMonth(2, 2019)).to.be.an('object');

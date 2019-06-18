@@ -1,5 +1,5 @@
 {
-  "name": "calendar-grid",
+  "name": "@leografx/calendar-grid",
   "version": "0.1.0",
   "description": "Calendar object to layout in columns and rows",
   "main": "index.js",
@@ -27,5 +27,11 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "pdfkit": "^0.10.0"
   }
 }

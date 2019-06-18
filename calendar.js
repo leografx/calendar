@@ -112,6 +112,6 @@ module.exports.generateMonth = generateMonth;
 module.exports.setDatesPosition = setDatesPosition;
 module.exports.firstDayOfTheMonth = firstDayOfTheMonth;
 module.exports.getDaysOfWeek = getDaysOfWeek;
-module.exports.isLeapYear = isLeapYear;
+module.exports.isLeapYear = isLeapYear; //?
 
 // console.log(generateMonth(12, 1971))
