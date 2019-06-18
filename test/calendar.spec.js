@@ -22,7 +22,12 @@ describe('Calendar tests', () => {
         chai.expect(day[cal.firstDayOfTheMonth(12, 1971)]).to.be.equal('Wednesday');
     });
 
-    it('century 1700 is not a leap year but 2000 is', () => {
+    it('century 1700 is not a leap year', () => {
+        chai.expect(cal.isLeapYear(1700)).to.be.false;
+        chai.expect(cal.isLeapYear(2000)).to.be.true;
+    });
+
+    it('century 2000 is a leap year', () => {
         chai.expect(cal.isLeapYear(1700)).to.be.false;
         chai.expect(cal.isLeapYear(2000)).to.be.true;
     });

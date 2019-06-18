@@ -1,4 +1,4 @@
-let getDaysOfWeek = function (short = false) {
+let getDaysOfWeek = function(short = false) {
     if (short) {
         return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     }
@@ -7,7 +7,7 @@ let getDaysOfWeek = function (short = false) {
 }
 
 
-let getMonth = function (m, short = false) {
+let getMonth = function(m, short = false) {
     const monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -18,7 +18,7 @@ let getMonth = function (m, short = false) {
 
 }
 
-let getDates = function (padding) {
+let getDates = function(padding) {
 
     if (padding) {
         return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
@@ -29,11 +29,11 @@ let getDates = function (padding) {
 }
 
 
-let firstDayOfTheMonth = function (month, year) {
+let firstDayOfTheMonth = function(month, year) {
     return new Date(`${month}/1/${year}`).getDay();
 }
 
-let isLeapYear = function (year) {
+let isLeapYear = function(year) {
     return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 }
 
@@ -72,7 +72,7 @@ function setDatesPosition(month, day, year) {
     return d;
 }
 
-const generateMonth = function (month, year, option = { dayOfWeekShort: false, monthShort: false }) {
+const generateMonth = function(month, year, option = { dayOfWeekShort: false, monthShort: false }) {
     let row1, row2, row3, row4, row5, row6;
     let d = [];
     let dayOfFirstDate = firstDayOfTheMonth(month, year)
@@ -87,25 +87,24 @@ const generateMonth = function (month, year, option = { dayOfWeekShort: false, m
     row5 = [d[28], d[29], d[30], d[31], d[32], d[33], d[34]];
     row6 = [d[35], d[36], d[37], d[38], d[39], d[40], d[41]];
 
-    if (d[28] === ' ') {
-        return { year, month: m, days: days, row1, row2, row3, row4 };
-    }
+    // if (d[28] === ' ') {
+    //     return { year, month: m, days: days, row1, row2, row3, row4 };
+    // }
 
-    if (d[35] === ' ') {
-        return { year, month: m, days: days, row1, row2, row3, row4, row5 };
-    }
+    // if (d[35] === ' ') {
+    //     return { year, month: m, days: days, row1, row2, row3, row4, row5 };
+    // }
 
     return { year, month: m, days: days, row1, row2, row3, row4, row5, row6 };
 }
 
-const dateIsValid = function (month, date, year) {
+const dateIsValid = function(month, date, year) {
     let dayOfFirstDate = firstDayOfTheMonth(month, year)
     let dates = setDatesPosition(month, dayOfFirstDate, year);
 
     return (dates.includes(String(date)));
 }
 
-// console.log(generateMonth(2, 2019, { dayOfWeekShort: true, monthShort: true }))
 
 module.exports.dateIsValid = dateIsValid;
 module.exports.generateMonth = generateMonth;
@@ -113,5 +112,3 @@ module.exports.setDatesPosition = setDatesPosition;
 module.exports.firstDayOfTheMonth = firstDayOfTheMonth;
 module.exports.getDaysOfWeek = getDaysOfWeek;
 module.exports.isLeapYear = isLeapYear;
-
-// console.log(generateMonth(12, 1971))
