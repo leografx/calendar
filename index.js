@@ -136,3 +136,4 @@ function drawBoard() {
     doc.rect(864 - (146 + 5 + 36), 180 + 5, (72 * 3) - 70, 72 * 3).clip();
     doc.roundedRect(864 - (146 + 36), 180 - 36, 72 * 3, 72 * 3, 72 / 2).stroke();
 }
+
