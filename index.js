@@ -16,6 +16,7 @@ doc.addPage({
 })
 
 
+
 renderYear();
 renderMonth(cal.generateMonth(1, year), 27, 792);
 renderMonth(cal.generateMonth(2, year), 306, 792);
@@ -30,6 +31,7 @@ renderMonth(cal.generateMonth(10, year), 27, 792 + (288 * 3));
 renderMonth(cal.generateMonth(11, year), 306, 792 + (288 * 3));
 renderMonth(cal.generateMonth(12, year), 585, 792 + (288 * 3));
 // renderMonth(cal.generateMonth(2, 2020));
+drawBoard();
 
 writeToFile();
 
@@ -122,4 +124,15 @@ function renderMonth(obj, x, y) {
     doc.text(obj.row6[6], x + 216 - 10, y + 180, { align: 'right', width: 36 });
 
 
+}
+
+function drawBoard() {
+    doc.lineWidth(10);
+
+    doc.rect(36, 180, 864 - 72, 1).stroke();
+    doc.rect(36, 36, 864 - 72, (72 * 8) - 36).stroke();
+
+    doc.save();
+    doc.rect(864 - (146 + 5 + 36), 180 + 5, (72 * 3) - 70, 72 * 3).clip();
+    doc.roundedRect(864 - (146 + 36), 180 - 36, 72 * 3, 72 * 3, 72 / 2).stroke();
 }
