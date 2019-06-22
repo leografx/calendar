@@ -143,4 +143,3 @@ function picture(img) {
         width: 864 - 72
     })
 }
-

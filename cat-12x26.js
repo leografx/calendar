@@ -31,7 +31,7 @@ renderMonth(cal.generateMonth(10, year), 27, 792 + (288 * 3));
 renderMonth(cal.generateMonth(11, year), 306, 792 + (288 * 3));
 renderMonth(cal.generateMonth(12, year), 585, 792 + (288 * 3));
 
-picture('images/dog.jpg');
+picture('images/cat.jpg');
 
 writeToFile();
 
@@ -143,4 +143,3 @@ function picture(img) {
         width: 864 - 72
     })
 }
-
