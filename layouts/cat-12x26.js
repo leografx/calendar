@@ -1,4 +1,4 @@
-let cal = require('./calendar');
+let cal = require('../calendar');
 const fs = require('fs');
 const pdfDoc = require('pdfkit');
 

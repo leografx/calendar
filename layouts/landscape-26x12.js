@@ -1,4 +1,4 @@
-let cal = require('./calendar');
+let cal = require('../calendar');
 const fs = require('fs');
 const pdfDoc = require('pdfkit');
 
@@ -11,27 +11,28 @@ const textColor = process.argv[5] || 'black';
 const doc = new pdfDoc({ autoFirstPage: false });
 
 doc.addPage({
-    size: [864, 1872],
+    size: [1872, 864],
     margin: 0
 })
 
 
 
-renderYear();
-renderMonth(cal.generateMonth(1, year), 27, 792);
-renderMonth(cal.generateMonth(2, year), 306, 792);
-renderMonth(cal.generateMonth(3, year), 585, 792);
-renderMonth(cal.generateMonth(4, year), 27, 792 + 288);
-renderMonth(cal.generateMonth(5, year), 306, 792 + 288);
-renderMonth(cal.generateMonth(6, year), 585, 792 + 288);
-renderMonth(cal.generateMonth(7, year), 27, 792 + (288 * 2));
-renderMonth(cal.generateMonth(8, year), 306, 792 + (288 * 2));
-renderMonth(cal.generateMonth(9, year), 585, 792 + (288 * 2));
-renderMonth(cal.generateMonth(10, year), 27, 792 + (288 * 3));
-renderMonth(cal.generateMonth(11, year), 306, 792 + (288 * 3));
-renderMonth(cal.generateMonth(12, year), 585, 792 + (288 * 3));
 
-picture('images/dog.jpg');
+renderMonth(cal.generateMonth(1, year), 45, 312);
+renderMonth(cal.generateMonth(2, year), 351, 312);
+renderMonth(cal.generateMonth(3, year), 657, 312);
+renderMonth(cal.generateMonth(4, year), 963, 312);
+renderMonth(cal.generateMonth(5, year), 1269, 312);
+renderMonth(cal.generateMonth(6, year), 1575, 312);
+renderMonth(cal.generateMonth(7, year), 45, 396 + 230);
+renderMonth(cal.generateMonth(8, year), 351, 396 + 230);
+renderMonth(cal.generateMonth(9, year), 657, 396 + 230);
+renderMonth(cal.generateMonth(10, year), 963, 396 + 230);
+renderMonth(cal.generateMonth(11, year), 1269, 396 + 230);
+renderMonth(cal.generateMonth(12, year), 1575, 396 + 230);
+
+renderYear();
+addAreas();
 
 writeToFile();
 
@@ -40,16 +41,16 @@ writeToFile();
 
 function renderYear() {
     doc.fillColor(barColor);
-    doc.fontSize(100);
+    doc.fontSize(200);
     doc.font('Helvetica-Bold');
-    doc.text(`${year}`, 0, 72 * 9 - 27, {
-        width: 864,
+    doc.text(`${year}`, 0, 36, {
+        width: 1872,
         align: 'center'
     });
 }
 
 function writeToFile() {
-    doc.pipe(fs.createWriteStream(`${year}_Calendar12x26.pdf`)); // write to PDF
+    doc.pipe(fs.createWriteStream(`${year}_LandscapeCalendar26x12.pdf`)); // write to PDF
     doc.end();
 }
 
@@ -126,20 +127,13 @@ function renderMonth(obj, x, y) {
 
 }
 
-function drawBoard() {
-    doc.lineWidth(10);
+function addAreas() {
 
-    doc.rect(36, 180, 864 - 72, 1).stroke();
-    doc.rect(36, 36, 864 - 72, (72 * 8) - 36).stroke();
+    doc.rect(45, 36, 612, 180).stroke(1);
+    doc.rect(1872 - (612 + 45), 36, 612, 180).stroke(1);
+    doc.fontSize(16);
+    doc.font('Helvetica')
+    doc.text('8.5 x 2.5 Ad goes here', 45, 108 + 18, { width: 612, align: 'center' });
+    doc.text('8.5 x 2.5 Ad goes here', 1872 - (612 + 45), 108 + 18, { width: 612, align: 'center' });
 
-    doc.save();
-    doc.rect(864 - (146 + 5 + 36), 180 + 5, (72 * 3) - 70, 72 * 3).clip();
-    doc.roundedRect(864 - (146 + 36), 180 - 36, 72 * 3, 72 * 3, 72 / 2).stroke();
-}
-
-
-function picture(img) {
-    doc.image(img, 36, 36, {
-        width: 864 - 72
-    })
 }
