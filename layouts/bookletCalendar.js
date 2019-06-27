@@ -1,7 +1,11 @@
 let cal = require('../calendar');
 const fs = require('fs');
 const pdfDoc = require('pdfkit');
+let SVGtoPDF = require('svg-to-pdfkit');
 
+pdfDoc.prototype.addSVG = function (svg, x, y, options) {
+    return SVGtoPDF(this, svg, x, y, options), this;
+};
 
 const gridColor = 'silver';
 const year = process.argv[2];
@@ -10,6 +14,12 @@ const monthColor = process.argv[4] || 'black';
 const textColor = process.argv[5] || 'black';
 
 const doc = new pdfDoc({ autoFirstPage: false });
+
+
+function addImage() {
+    // doc.addSVG('images/photos_opt.svg', 0, 0);
+    doc.image('images/photos.png', 90);
+}
 
 doc.addPage({
     size: [792, 612],
@@ -25,7 +35,8 @@ for (let i = 0; i < 12; i++) {
         margin: 0
     });
 
-    doc.image('images/photos.png', 90);
+    addImage();
+
 
     doc.addPage({
         size: [792, 612],
@@ -48,7 +59,7 @@ writeToFile();
 
 
 function writeToFile() {
-    doc.pipe(fs.createWriteStream(`${year}BookletCalendar.pdf`)); // write to PDF
+    doc.pipe(fs.createWriteStream(`${year}BookletCalendar.pdf`, { encoding: 'utf-8' })); // write to PDF
     doc.end();
 }
 
