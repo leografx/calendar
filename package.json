@@ -2,9 +2,13 @@
   "name": "@leografx/calendar-grid",
   "version": "0.1.0",
   "description": "Calendar object to layout in columns and rows",
+  "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "cat": "node layouts/cat-12x26.js",
+    "dog": "node layouts/dog-12x26.js",
+    "booklet": "node layouts/bookletCalendar.js"
   },
   "repository": {
     "type": "git",
