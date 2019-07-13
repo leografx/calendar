@@ -1,4 +1,4 @@
-let getDaysOfWeek = function (short = false) {
+let getDaysOfWeek = function(short = false) {
     if (short) {
         return ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     }
@@ -7,7 +7,7 @@ let getDaysOfWeek = function (short = false) {
 }
 
 
-let getMonth = function (m, short = false) {
+let getMonth = function(m, short = false) {
     const monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -18,7 +18,7 @@ let getMonth = function (m, short = false) {
 
 }
 
-let getDates = function (padding) {
+let getDates = function(padding) {
 
     if (padding) {
         return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
@@ -29,12 +29,12 @@ let getDates = function (padding) {
 }
 
 
-let firstDayOfTheMonth = function (month, year) {
+let firstDayOfTheMonth = function(month, year) {
     const d = `${month}/1/${year}`;
     return new Date(d).getDay();
 }
 
-let isLeapYear = function (year) {
+let isLeapYear = function(year) {
     return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
 }
 
@@ -73,7 +73,7 @@ function setDatesPosition(month, day, year) {
     return d;
 }
 
-const generateMonth = function (month, year, option = { dayOfWeekShort: false, monthShort: false }) {
+const generateMonth = function(month, year, option = { dayOfWeekShort: false, monthShort: false }) {
     let row1, row2, row3, row4, row5, row6;
     let d = [];
     let dayOfFirstDate = firstDayOfTheMonth(month, year)
@@ -99,11 +99,98 @@ const generateMonth = function (month, year, option = { dayOfWeekShort: false, m
     return { year, month: m, days: days, row1, row2, row3, row4, row5, row6 };
 }
 
-const dateIsValid = function (month, date, year) {
+const dateIsValid = function(month, date, year) {
     let dayOfFirstDate = firstDayOfTheMonth(month, year)
     let dates = setDatesPosition(month, dayOfFirstDate, year);
 
     return (dates.includes(String(date)));
+}
+
+const holidays = function(year) {
+
+    const january = [
+        { date: 1, holiday: 'New Year\'s Day' },
+        { date: martinLutherKingDate(year), holiday: 'Martin Luther King Jr. Day' }
+    ];
+
+    const february = [
+        { date: '14', holiday: 'Valentine\'s Day ' },
+        { date: presidentsDate(year), holiday: 'Presidents\' Day' }
+    ];
+
+    const march = [
+        { date: 17, holiday: 'St. Patrick\'s Day' }
+    ];
+
+    const may = [
+        { date: memorialDate(year), holiday: 'Memorial Day' },
+        { date: mothersDate(year), holiday: 'Mother\'s Day' }
+    ];
+
+    const june = [
+        { date: fathersDate(year), holiday: 'Father\'s Day' }
+    ];
+
+    const july = [
+        { date: 4, holiday: 'Independence Day' }
+    ];
+
+    const september = [
+        { date: laborDate(year), holiday: 'Labor Day' }
+    ];
+
+    const november = [
+        { date: 11, holiday: 'Veterans Day' },
+        { date: thanksgivingDate(year), holiday: 'Thanksgiving Day' }
+    ];
+
+    const december = [
+        { date: '25', holiday: 'Christmas Day' }
+    ];
+
+    return { holidays: { january, february, march, may, june, july, september, november, december } };
+}
+
+function martinLutherKingDate(year) {
+    const january = generateMonth(1, year);
+    const date = (january.row1[1] === ' ') ? january.row4[1] : january.row3[1];
+    return date;
+}
+
+function presidentsDate(year) {
+    const february = generateMonth(2, year);
+    const date = (february.row1[1] === ' ') ? february.row4[1] : february.row3[1];
+    return date;
+}
+
+function memorialDate(year) {
+    const may = generateMonth(5, year);
+    const date = (may.row1[1] === ' ') ? may.row5[1] : may.row4[1];
+    return date;
+}
+
+function laborDate(year) {
+    const september = generateMonth(9, year);
+    const date = (september.row1[1] === ' ') ? september.row2[1] : september.row1[1];
+    return date;
+}
+
+function thanksgivingDate(year) {
+    const november = generateMonth(11, year);
+    const date = (november.row1[4] === ' ') ? november.row5[4] : november.row4[4];
+    return date;
+}
+
+function mothersDate(year) {
+    const may = generateMonth(5, year);
+    const date = (may.row1[0] === ' ') ? may.row3[0] : may.row2[0];
+    return date;
+}
+
+function fathersDate(year) {
+    const june = generateMonth(6, year);
+    const date = (june.row1[0] === ' ') ? june.row4[0] : june.row3[0];
+    return date;
 }
 
 
